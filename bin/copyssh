@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+xclip -sel clip < ~/.ssh/id_rsa.pub \
+    && echo "Key for user \"$USER\" is copied ti the memory!"
