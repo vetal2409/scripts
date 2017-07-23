@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo -n $PWD | xclip -sel clip \
+    && echo "$PWD"
