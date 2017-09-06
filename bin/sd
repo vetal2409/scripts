@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+shutdown_signal_path=/var/run/shutdown_signal
+shutdown_signal_interval=10
+
+if [ -e "$shutdown_signal_path" ]
+then
+    sudo truncate -s 0 "$shutdown_signal_path"
+    echo "ok"
+else
+    sudo touch "$shutdown_signal_path"
+    echo "nok"
+fi
+
+while sleep "$shutdown_signal_interval"; do
+    signal=$(cat /var/run/shutdown_signal)
+    if [ "$signal" == "true" ]; then
+        shutdown -h now
+    fi
+done
