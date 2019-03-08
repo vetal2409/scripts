@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-shutdown_signal_path=/var/run/shutdown_signal
+shutdown_signal_path=/home/vs/projects/apps/shutdown/shutdown_signal
 shutdown_signal_interval=10
 
 if [ -e "$shutdown_signal_path" ]
@@ -13,7 +13,7 @@ else
 fi
 
 while sleep "$shutdown_signal_interval"; do
-    signal=$(cat /var/run/shutdown_signal)
+    signal=$(cat "$shutdown_signal_path")
     if [ "$signal" == "true" ]; then
         shutdown -h now
     fi
